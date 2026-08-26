@@ -1,6 +1,6 @@
 Flask==3.0.2
 Werkzeug==3.0.1
-ultralytics==8.4.129
+ultralytics
 onnxruntime
-Pillow==10.2.0
-gunicorn==21.2.0
+Pillow
+gunicorn
