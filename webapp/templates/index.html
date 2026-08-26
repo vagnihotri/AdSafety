@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ad Image Policy Moderation</title>
+    <meta name="description" content="AI-powered Ad Policy Moderation System evaluating images for safety violations.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+
+    <main class="container">
+        <header class="app-header">
+            <h1>Ad Safety Moderator</h1>
+            <p>Upload an ad creative to evaluate its safety based on community guidelines.</p>
+        </header>
+
+        <section class="upload-section">
+            <div class="upload-card" id="upload-card">
+                <input type="file" id="image-input" accept="image/*" hidden>
+                <div class="upload-content" id="upload-content">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="upload-icon"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                    <p class="upload-text">Drag & drop your image here or <span>browse</span></p>
+                    <p class="upload-hint">Supports JPG, PNG, WEBP (Max 5MB)</p>
+                </div>
+                <div class="preview-container hidden" id="preview-container">
+                    <img id="image-preview" src="" alt="Preview">
+                    <button class="remove-btn" id="remove-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    </button>
+                </div>
+            </div>
+            
+            <button id="evaluate-btn" class="primary-btn" disabled>
+                <span class="btn-text">Evaluate Image</span>
+                <div class="spinner hidden" id="loading-spinner"></div>
+            </button>
+        </section>
+
+        <section class="results-section hidden" id="results-section">
+            <div class="result-card">
+                <div class="result-header">
+                    <h2>Evaluation Results</h2>
+                    <div class="verdict-badge" id="verdict-badge">PENDING</div>
+                </div>
+                
+                <div class="metrics-grid">
+                    <div class="metric-box">
+                        <span class="metric-label">Violation Score</span>
+                        <div class="score-container">
+                            <span class="metric-value" id="violation-score">0.00</span>
+                            <span class="metric-max">/ 1.0</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="score-progress"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="metric-box">
+                        <span class="metric-label">Predicted Class</span>
+                        <span class="metric-value text-value" id="predicted-class">-</span>
+                        <span class="metric-subtext" id="confidence-subtext">Confidence: 0%</span>
+                    </div>
+                </div>
+
+                <div class="breakdown-container">
+                    <h3>Class Breakdown</h3>
+                    <ul class="breakdown-list" id="breakdown-list">
+                        <!-- Populated dynamically -->
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
